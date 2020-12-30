@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "634736299564",
+    "project_id": "hans-manager",
+    "storage_bucket": "hans-manager.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:634736299564:android:11427e7d3b197cd4b34b89",
+        "android_client_info": {
+          "package_name": "com.example.hans_manager"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "634736299564-5emirba181rrh5bdj44ef0p9c65ur4eb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDRkMmIM2WvXUqyYP1YtXmMlvF3b6uv__s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "634736299564-5emirba181rrh5bdj44ef0p9c65ur4eb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

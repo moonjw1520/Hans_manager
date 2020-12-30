@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">HansManager</string>
+    <string name="title">HansManager</string>
+    <string name="sms_dont_send">미발송!!</string>
+    <string name="sms_sent">발송 완료</string>
+    <string name="can_use_plan">배차가능</string>
+    <string name="duplication_plan">중복확인</string>
+    <string name="aws_domain">13.125.254.145</string>
+    <string name="title_activity_list__food__menu">Activity_list_Food_Menu</string>
+    <!--
+    This string is used for square devices and overridden by hello_world in
+    values-round/strings.xml for round devices.
+    -->
+    <string name="hello_world">Hello Square World!</string>
+</resources>
