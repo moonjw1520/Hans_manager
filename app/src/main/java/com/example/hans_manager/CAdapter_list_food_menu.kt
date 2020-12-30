@@ -100,14 +100,14 @@ class CAdapter_list_food_menu(context: Context, item : ArrayList<D_PMenu>, var m
         when(a_nFlag)
         {
             1-> m_viewHolder.text_kind.setTextColor(m_Context.getColor(R.color.black))
-
             2-> m_viewHolder.text_kind.setTextColor(m_Context.getColor(R.color.color_purple_place))
-
             3-> m_viewHolder.text_kind.setTextColor(m_Context.getColor(R.color.color_orange_default))
-
             4-> m_viewHolder.text_kind.setTextColor(m_Context.getColor(R.color.color_green_default3))
+            5-> m_viewHolder.text_kind.setTextColor(m_Context.getColor(R.color.color_blue_sms))
+            6-> m_viewHolder.text_kind.setTextColor(m_Context.getColor(R.color.color_red_default))
 
 
+            else -> m_viewHolder.text_kind.setTextColor(m_Context.getColor(R.color.black))
         }
     }
 

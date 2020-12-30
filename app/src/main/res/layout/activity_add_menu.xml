@@ -1,9 +1,182 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/color_hans_light"
     tools:context=".ActivityAddMenu">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textSize="20sp"
+        android:text="메뉴 추가"
+        android:textColor="@color/black"
+        android:layout_marginTop="10dp"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+
+        >
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="가격 정보 : "
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            />
+
+        <EditText
+            android:id="@+id/et_menu_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:hint="1인 기준 5만원"
+            />
+
+    </LinearLayout> <!-- 이름 -->
+
+    <RadioGroup
+        android:id="@+id/radio_group"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+
+        <RadioButton
+            android:id="@+id/rb_normal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="13dp"
+            android:text="일반" />
+
+        <RadioButton
+            android:id="@+id/rb_premium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/color_purple_place"
+            android:textSize="13dp"
+            android:text="프리미엄" />
+
+        <RadioButton
+            android:id="@+id/rb_bbq"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="13dp"
+            android:textColor="@color/color_orange_default"
+            android:text="BBQ" />
+
+        <RadioButton
+            android:id="@+id/rb_dessert"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/color_green_default3"
+            android:textSize="13dp"
+            android:text="다과" />
+
+        <RadioButton
+            android:id="@+id/rb_lunchbox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/color_blue_sms"
+            android:textSize="13dp"
+            android:text="도시락" />
+
+        <RadioButton
+            android:id="@+id/rb_party"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/color_red_default"
+            android:textSize="13dp"
+            android:text="파티팩" />
+
+    </RadioGroup>
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="메뉴 내용 "
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            />
+
+
+    </LinearLayout> <!-- 이름 -->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_weight="1"
+        >
+
+        <EditText
+            android:id="@+id/et_menu_desc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:hint="깐풍기"
+            />
+
+
+    </LinearLayout> <!-- 이름 -->
+
+
+
+
+    <!-- 저장 확인 버튼 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:textColor="@color/black"
+        android:textSize="22sp"
+        >
+
+        <Button
+            android:id="@+id/btn_cancel_menu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="취소"
+            android:backgroundTint="@color/hans_main"
+            android:textColor="@color/white"
+            android:layout_weight="1"
+            />
+
+        <Button
+            android:id="@+id/btn_add_menu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="추가"
+            android:backgroundTint="@color/hans_main"
+            android:textColor="@color/white"
+            android:layout_weight="1"
+            />
+
+    </LinearLayout> <!-- 저장 확인 버튼 -->
+
+
+</LinearLayout>

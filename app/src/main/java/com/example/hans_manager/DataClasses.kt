@@ -62,6 +62,24 @@ object CListCollector
 
 }
 
+object  CGet {
+    fun GetKindStr(a_nFlag: Int): String {
+        var KindStr: String
+        when (a_nFlag) {
+            1 -> KindStr = "일반 케이터링 "
+            2 -> KindStr = "프리미엄 케이터링 "
+            3 -> KindStr = "BBQ 케이터링 "
+            4 -> KindStr = "다과 케이터링 "
+            5 -> KindStr = "도시락 "
+            6 -> KindStr = "파티팩 "
+
+            else -> KindStr = "일반 케이터링 "
+
+        }
+        return KindStr
+    }
+}
+
 object  CPushHttp
 {
     fun InsertPushData()

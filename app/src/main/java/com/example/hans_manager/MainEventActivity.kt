@@ -18,6 +18,7 @@ import androidx.core.app.ActivityCompat
 import androidx.core.app.NotificationManagerCompat
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.hans_manager.CGet.GetKindStr
 import com.example.hans_manager.CListCollector.AWS_DOMAIN
 import com.example.hans_manager.CListCollector.MY_kakaoId
 import com.example.hans_manager.CListCollector.MY_nickName
@@ -130,6 +131,12 @@ class MainEventActivity : AppCompatActivity(), MyRecyclerviewInterface, StateRec
 
                 //Snackbar.make(tool_bar,"Search menu pressed",Snackbar.LENGTH_SHORT).show()
             }
+
+            R.id.menu_admin->{ // 관리 페이지
+                var intent = Intent(this,ActivityAdmin::class.java)
+                startActivity(intent)
+            }
+
             R.id.menu_logout->{ // 로그아웃 버튼
                 //Snackbar.make(tool_bar,"Account menu pressed",Snackbar.LENGTH_SHORT).show()
                 UserApiClient.instance.logout { error ->
@@ -433,20 +440,22 @@ class MainEventActivity : AppCompatActivity(), MyRecyclerviewInterface, StateRec
 
     }
 
-    fun GetKindStr(a_nFlag : Int) : String
-    {
-        var KindStr : String
-        when(a_nFlag)
-        {
-            1-> KindStr = "일반 케이터링 "
-            2-> KindStr = "프리미엄 케이터링 "
-            3-> KindStr = "BBQ 케이터링 "
-            4-> KindStr = "다과 케이터링 "
-            else -> KindStr = "일반 케이터링 "
-
-        }
-        return KindStr
-    }
+//    fun GetKindStr(a_nFlag : Int) : String
+//    {
+//        var KindStr : String
+//        when(a_nFlag)
+//        {
+//            0-> KindStr = "도시락 "
+//            1-> KindStr = "일반 케이터링 "
+//            2-> KindStr = "프리미엄 케이터링 "
+//            3-> KindStr = "BBQ 케이터링 "
+//            4-> KindStr = "다과 케이터링 "
+//
+//            else -> KindStr = "일반 케이터링 "
+//
+//        }
+//        return KindStr
+//    }
 
 
     fun getMatchingMenu()

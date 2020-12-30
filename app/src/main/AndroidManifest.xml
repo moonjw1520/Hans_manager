@@ -15,9 +15,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Hans_manager"
-        android:usesCleartextTraffic="true"
-        >
-        <activity android:name=".Activity_list_cars_info"></activity>
+        android:usesCleartextTraffic="true">
+        <activity android:name=".ActivityAddMenu"></activity>
+        <activity android:name=".ActivityAddCar" />
+        <activity android:name=".ActivityAddEmployee" />
+        <activity android:name=".ActivityAdmin" />
+        <activity android:name=".Activity_list_cars_info" />
         <activity android:name=".Activity_list_food_menu" />
         <activity android:name=".EventDetailDay" />
         <activity android:name=".ActivityCreateHansEvent" />

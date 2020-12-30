@@ -17,6 +17,7 @@ class Activity_list_cars_info : AppCompatActivity() {
     lateinit var m_event_id : String
     var m_nDelivery_index : Int = 0
     var m_nEvent_Index : Int = 0
+    var m_nflag=0
 
     private lateinit var m_Adapter : CAdapter_list_cars_info
 
@@ -27,45 +28,76 @@ class Activity_list_cars_info : AppCompatActivity() {
         m_event_id = intent.getStringExtra("id")
         m_nDelivery_index = intent.getIntExtra("delivery_index",0)
         m_nEvent_Index = intent.getIntExtra("event_index",0)
+        m_nflag = intent.getIntExtra("flag",0)
 
 
         btn_Ok.setOnClickListener {
 
             var car_id ="0"
             var car_num ="미정"
-
-            CListCollector.list_event[m_nEvent_Index].List_delivery_man[m_nDelivery_index].car_id =  car_id
-            CListCollector.list_event[m_nEvent_Index].List_delivery_man[m_nDelivery_index].car_num = car_num
-
             val checkedItem = listView.checkedItemPositions
+
+            if( list_cars_info.size== 0 ) {   finish()   }
+
+            if(m_nflag == 0) {
+                CListCollector.list_event[m_nEvent_Index].List_delivery_man[m_nDelivery_index].car_id =  car_id
+                CListCollector.list_event[m_nEvent_Index].List_delivery_man[m_nDelivery_index].car_num = car_num
+            }
 
             (0 until m_Adapter.count)
                 .filter { checkedItem.get(it) }
                 .forEach {
                     car_id = list_cars_info[it].id
                     car_num = list_cars_info[it].num_str
-                    CListCollector.list_event[m_nEvent_Index].List_delivery_man[m_nDelivery_index].car_id =  list_cars_info[it].id
-                    CListCollector.list_event[m_nEvent_Index].List_delivery_man[m_nDelivery_index].car_num = list_cars_info[it].num_str
+                    if(m_nflag == 0) {
+                        CListCollector.list_event[m_nEvent_Index].List_delivery_man[m_nDelivery_index].car_id  = list_cars_info[it].id
+                        CListCollector.list_event[m_nEvent_Index].List_delivery_man[m_nDelivery_index].car_num = list_cars_info[it].num_str
+                    }
                 }
 
-            for(i in 0 until list_delivery_man.size)
+            if(m_nflag == 0)
             {
-                if(list_event[m_nEvent_Index].List_delivery_man[m_nDelivery_index].id == list_delivery_man[i].id)
+                for (i in 0 until list_delivery_man.size)
                 {
-                    for(inx in 0 until  list_delivery_man[i].List_Event.size)
-                    {
-                        if(list_event[m_nEvent_Index].id == list_delivery_man[i].List_Event[inx].id)
-                        {
-                            list_delivery_man[i].List_Event[inx].car_id = car_id
-                            list_delivery_man[i].List_Event[inx].car_num = car_num
+                    if (list_event[m_nEvent_Index].List_delivery_man[m_nDelivery_index].id == list_delivery_man[i].id) {
+                        for (inx in 0 until list_delivery_man[i].List_Event.size) {
+                            if (list_event[m_nEvent_Index].id == list_delivery_man[i].List_Event[inx].id) {
+                                list_delivery_man[i].List_Event[inx].car_id = car_id
+                                list_delivery_man[i].List_Event[inx].car_num = car_num
+                            }
                         }
                     }
                 }
+                UpdateMatchingCarsInfo()
+
+            }
+            else
+            {
+                //배차 정보리스트에서 삭제한다.
+                for(j in 0 until  list_cars_info.size)
+                {
+                    if(list_cars_info[j].id == car_id)
+                    {
+                        list_cars_info.removeAt(j)
+                        break
+                    }
+                }
+                //이벤트에 배차된 직원들 중 삭제되는 차량이 있으면 지워주고 미정으로 바꿔준다.
+                for(i in 0 until list_event.size)
+                {
+                    for(inx in 0 until  list_event[i].List_delivery_man.size)
+                    {
+                        if(list_event[i].List_delivery_man[inx].id == car_id)
+                        {
+                            list_event[i].List_delivery_man[inx].id = "0"
+                            list_event[i].List_delivery_man[inx].car_num = "미정"
+                        }
+                    }
+                }
+
+                DeleteCarsInfo(car_id)
             }
 
-
-
-            UpdateMatchingCarsInfo()
             finish()
         }
 
@@ -101,6 +133,30 @@ class Activity_list_cars_info : AppCompatActivity() {
                     Toast.makeText( applicationContext, "저장 되었습니다.", Toast.LENGTH_SHORT).show()
                 }
 
+            }
+        })
+    }
+
+    fun DeleteCarsInfo(a_id : String) {
+        val url = "${CListCollector.AWS_DOMAIN}/hans/delete_carsinfo"
+        val client: OkHttpClient = OkHttpClient()
+        Log.d("로그", "Delete car_id: ${a_id}")
+        val body: RequestBody = FormBody.Builder().add("id", a_id).build()
+        val request = Request.Builder().url(url).post(body).build()
+        client.newCall(request).enqueue(object : Callback {
+            override fun onFailure(call: Call, e: IOException) {
+                //에러 메세지 출력
+                Log.d("로그", e.toString())
+            }
+
+            override fun onResponse(call: Call, response: Response) {
+                Log.d("로그", "${response.body.toString()}")
+                //Update Main UI
+                Log.d("로그","DeleteMatching.....")
+                runOnUiThread {
+                    Toast.makeText(applicationContext, "삭제 되었습니다.", Toast.LENGTH_SHORT).show()
+
+                }
             }
         })
     }
